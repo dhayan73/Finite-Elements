@@ -5,7 +5,7 @@ Created on Fri Jul  5 21:55:44 2019
 @author: Dhayan
 """
 
-# generation of a local stiffness matrix for 4 node rectangular strain element
+# generation of a local stiffness matrix for 4 node 2D rectangular strain element
 # the stiffness matrix generated for an isoparametric element.
  
 import numpy as np
@@ -29,6 +29,7 @@ C[2][2] = E / (2*(1+nu))
 et = np.array([-0.57735, -0.57735, 0.57735, 0.57735])
 ne = np.array([-0.57735, 0.57735, -0.57735, 0.57735])
 
+# weights for Gauss quadrature points.
 wi = 1
 wj = 1
 
