@@ -12,10 +12,11 @@ xy = xy.T
 
 k = np.array([[1,0],[0,1]]) # thermal coefficients.
 
-# using two point integration formula (gauss quadrature method)
+# using two point integration formula (Gauss quadrature method)
 et = np.array([-0.57735, -0.57735, 0.57735, 0.57735])
 ne = np.array([-0.57735, 0.57735, -0.57735, 0.57735])
 
+# weights for Gauss quadrature points.
 wi = 1
 wj = 1
 
@@ -37,7 +38,7 @@ def thermal_element_4_node_rect(xy,k,t):
         J = jacobian(b, xy)
         Jdet = np.linalg.det(J) # find determinant of jacobian
         Jinv = np.linalg.inv(J) # find inverse of jacobian
-        da = Jdet*wi*wj # need to check if application of weights is accurate.
+        da = Jdet*wi*wj # need to check if application of weights are accurate.
     
         B = np.matmul(Jinv, b) # transform b matrix in eta, neta to x and y plane.
         
