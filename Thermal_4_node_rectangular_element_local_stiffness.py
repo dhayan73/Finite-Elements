@@ -4,6 +4,8 @@ Created on Fri Jul  5 20:07:01 2019
 
 @author: Dhayan
 """
+# generation of a local stiffness matrix for 4 node 2D rectangular thermal element
+# the stiffness matrix generated for an isoparametric element.
 
 import numpy as np
 
