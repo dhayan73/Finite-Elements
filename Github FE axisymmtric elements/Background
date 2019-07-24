@@ -1,0 +1,35 @@
+Objectives:
+
+Define 4 and 8 node rectangular elements that generate appropriate local stiffness matrices.
+Apply suitable Gauss-Quadrature to generate relevant stiffness matrices.
+Analyse simple 2D axisymmetric model of a thick wall with 1 inch inner radius and 2 inches outer radius.
+Define an external load matrix (manually defined), solve the F = Ku equation to obtain the nodal deformation u.
+Apply the results obtained to calculate the Stress at each Gauss point.
+
+Compare results between a Five element strip of 4 node rectangles Vs 10 node rectangles.
+Then compare results with a two element 8 node rectangle element system.
+
+Observations:
+
+All models were able to provide reasonable estimations for deflection.
+
+However 5 element model stress results were not very accurate. (compared against exact/theory solution).
+
+Increasing to 10 elements did not change the accuaracy of the stress estimations by much (although a slight improvement is noticed as 
+seen in the spreadsheet of results.)
+
+The two element 8 node rectangular set up seemed to be the best for both stress and deflection.
+
+Also noticed that for two element 8 node set up the deformation was exactly as the theoretical calculations for a 2x2 Gauss points, 
+but the stress was not very accuarte. 
+For 3x3 Gauss points the deformation results were different from the theory (however not significantly different) and the stress was more
+accurate.
+
+Conclusions:
+
+The reason for the 8 node elements to provide better results would have to do with the element being of higher order and less linear 
+than a 4 node element. This observation demonstrates that mesh refinement is not always the best method to improve accuracy.
+
+"Linear elements can give results for problems such as tempreature distribution, where nodal point results are of interest.
+In any application where the derivative is the significant result, the analyst should be aware of the limitations of the linear 
+formulations"
