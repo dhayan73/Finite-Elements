@@ -68,8 +68,8 @@ class Element:
         C = coeff*C
         return C
     
-    def fourNlinearShapeFunc(self,et,ne):
-        # shape/ interpolation function for 4 node element
+    def shapeFunc(self,et,ne):
+        # shape/ interpolation function for 8 node element
         N = np.array([[(1-et)*(1-ne)*(-et-ne-1), (1+et)*(1-ne)*(et-ne-1), (1+et)*(1+ne)*(et+ne-1), (1-et)*(1+ne)*(-et+ne-1), 2*(1-et**2)*(1-ne), 2*(1+et)*(1-ne**2), 2*(1-et**2)*(1+ne), 2*(1-et)*(1-ne**2)],
                       [(1-et)*(1-ne)*(-et-ne-1), (1+et)*(1-ne)*(et-ne-1), (1+et)*(1+ne)*(et+ne-1), (1-et)*(1+ne)*(-et+ne-1), 2*(1-et**2)*(1-ne), 2*(1+et)*(1-ne**2), 2*(1-et**2)*(1+ne), 2*(1-et)*(1-ne**2)]])
         N = 0.25*N
@@ -120,7 +120,7 @@ class Element:
         et = self.eta
         ne = self.neta
 
-        #initialize a 4 by 4 matrix.
+        #initialize local stiffness matrix.
         K = np.zeros([16,16]) 
         
         for n in range(np.size(et)):
@@ -128,8 +128,8 @@ class Element:
             wi = self.weights[0,n]
             wj = self.weights[1,n]
             
-            # shape/ interpolation function for 4 node element
-            N = self.fourNlinearShapeFunc(et[n],ne[n])
+            # shape/ interpolation function for 8 node element
+            N = self.shapeFunc(et[n],ne[n])
             
             # calculate r and z
             r,z = self.getGausspoints(et[n],ne[n],xy)
@@ -171,7 +171,7 @@ class Element:
             JInv = np.linalg.inv(J)
             pB = np.matmul(JInv, b)
             
-            N = self.fourNlinearShapeFunc(et[n],ne[n])
+            N = self.shapeFunc(et[n],ne[n])
             r,z = self.getGausspoints(et[n],ne[n],xy)
             B = self.rebuildB(pB, N, r)
             C = self.C
